@@ -9,5 +9,8 @@
 	Noeud* 	arbreMaximum(Noeud* _noeud);
 	Noeud* 	arbreSuccesseur(Noeud* _noeud);
 	void	afficherArbreRecursif(Noeud* _noeud);
+	void	afficherArbreIteratif(Noeud* _noeud);
+	int		lectureFichierArbre(Arbre** _arbre, const char* _fileName);
+	int		compterArbre(Noeud* _noeud);
 
 #endif

@@ -1,6 +1,8 @@
 #include "outilsArbre.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "pile.h"
+#include "outilsPile.h"
 
 void 	transplanter(Arbre* _arbre, Noeud* _u, Noeud* _v)
 {
@@ -70,3 +72,64 @@ void	afficherArbreRecursif(Noeud* _noeud)
 		afficherArbreRecursif(_noeud->droit);
 	}
 }
+
+void	afficherArbreIteratif(Noeud* _noeud)
+{
+	Pile* pile = NULL;
+	pile = creerPile(50);
+	if(_noeud != NULL)
+	{
+		empiler(pile, _noeud);
+		while(!pileVide(pile))
+		{
+			_noeud = depiler(pile);
+			printf("%s\n", _noeud->mot);
+			if(_noeud->droit != NULL)
+			{
+				empiler(pile, _noeud->droit);
+			}
+
+			if(_noeud->gauche != NULL)
+			{
+				empiler(pile, _noeud->gauche);
+			}
+		}
+	}
+}
+
+int		lectureFichierArbre(Arbre** _arbre, const char* _fileName)
+{
+	int i = 1, totalCount = 0;
+	FILE * file = NULL;
+	char * word = (char *)malloc(sizeof(char) * 26);
+	Noeud* noeud = NULL;
+	(*_arbre) = creerArbre(15);
+	if( (file = fopen(_fileName, "r")) == NULL)
+		return 0;
+
+	while(i)
+	{
+		i = (fscanf(file, "%s", word) != EOF);
+		if (i != 0)
+		{
+			totalCount++;	
+		}
+		noeud = creerNoeud(word, 26);
+		inserer((*_arbre), noeud);
+	}
+	fclose(file);
+	return totalCount;
+}
+
+int		compterArbre(Noeud* _noeud)
+{
+	int nbMots = 0;
+	if(_noeud != NULL)
+	{
+		nbMots += compterArbre(_noeud->gauche);
+		nbMots++;
+		nbMots += compterArbre(_noeud->droit);
+	}
+	return nbMots;
+}
+

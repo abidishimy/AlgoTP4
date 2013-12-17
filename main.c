@@ -6,24 +6,13 @@
 
 int main()
 {
-	Noeud* noeud1 = NULL;
-	Noeud* noeud2 = NULL;
-	Noeud* noeud3 = NULL;
-	Noeud* noeud4 = NULL;
 	Arbre* arbre = NULL;
+	int nbMots = 0;
+	if((nbMots = lectureFichierArbre(&arbre, "texte1.txt")))
+	{
+		printf("\nIl y a %d mot(s) dans ce fichier", nbMots);
+		printf("\nIl y a %d mot(s) différents dans ce fichier \n", compterArbre(arbre->racine));
+	}
 
-	noeud1 = creerNoeud("bonjour",10);
-	noeud2 = creerNoeud("comment",10);
-	noeud3 = creerNoeud("ca",10);
-	noeud4 = creerNoeud("va",10);
-
-	arbre = creerArbre();
-	inserer(arbre, noeud1);
-	inserer(arbre, noeud2);
-	inserer(arbre, noeud3);
-	inserer(arbre, noeud4);
-
-	afficherArbreRecursif(arbre->racine);
-	detruireArbre(&arbre);
 	return 1;
 }

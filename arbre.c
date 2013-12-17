@@ -25,6 +25,12 @@ void	inserer(Arbre* _arbre, Noeud* _noeud)
 	Noeud* y = NULL;
 	Noeud* x = NULL;
 
+	x = rechercher(_arbre->racine, _noeud->mot);
+	if(x != NULL)
+	{
+		return;
+	}
+
 	x = _arbre->racine;
 	while( x != NULL)
 	{
@@ -57,7 +63,7 @@ void	inserer(Arbre* _arbre, Noeud* _noeud)
 
 Noeud*	rechercher(Noeud* _noeud, char* _mot)
 {
-	while( _noeud != NULL && !strcmp(_mot, _noeud->mot))
+	while( _noeud != NULL && strcmp(_mot, _noeud->mot))
 	{
 		if(strcmp(_mot, _noeud->mot) < 0)
 		{
@@ -68,7 +74,7 @@ Noeud*	rechercher(Noeud* _noeud, char* _mot)
 			_noeud = _noeud->droit;
 		}
 	}
-
+	
 	return _noeud;
 }
 
