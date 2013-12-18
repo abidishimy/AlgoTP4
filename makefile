@@ -2,8 +2,8 @@ CC = gcc -Wall -O3 -ansi -pedantic
 
 all: main clean
 
-main: main.o noeud.o arbre.o outilsArbre.o pile.o outilsPile.o
-	$(CC) -o main main.o noeud.o arbre.o outilsArbre.o pile.o outilsPile.o -lm
+main: main.o noeud.o arbre.o outilsArbre.o pile.o outilsPile.o outilsPresentation.o outilsSaisie.o
+	$(CC) -o main main.o noeud.o arbre.o outilsArbre.o pile.o outilsPile.o outilsPresentation.o outilsSaisie.o -lm
 
 main.o: main.c
 	$(CC) -o main.o -c main.c
@@ -22,6 +22,12 @@ pile.o: pile.c pile.h
 
 outilsPile.o: outilsPile.c outilsPile.h
 	$(CC) -o outilsPile.o -c outilsPile.c
+
+outilsPresentation.o: outilsPresentation.c outilsPresentation.h
+	$(CC) -o outilsPresentation.o -c outilsPresentation.c
+
+outilsSaisie.o: outilsSaisie.c outilsSaisie.h
+	$(CC) -o outilsSaisie.o -c outilsSaisie.c
 
 clean:
 	rm -rf *.o

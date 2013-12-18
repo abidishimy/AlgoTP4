@@ -3,16 +3,36 @@
 #include "noeud.h"
 #include "arbre.h"
 #include "outilsArbre.h"
+#include "outilsPresentation.h"
+#include "outilsSaisie.h"
 
 int main()
 {
-	Arbre* arbre = NULL;
-	int nbMots = 0;
-	if((nbMots = lectureFichierArbre(&arbre, "texte1.txt")))
-	{
-		printf("\nIl y a %d mot(s) dans ce fichier", nbMots);
-		printf("\nIl y a %d mot(s) différents dans ce fichier \n", compterArbre(arbre->racine));
-	}
+	int choix;
 
+	printf("/************************************************/ \n");
+	printf("\\*\t\t\t TP4 \t\t\t*\\\n");
+	printf("/************************************************/ \n");
+
+	printf("Choisissez ce que vous souhaitez faire : \n");
+	printf("\t1 - Comparer des fichiers\n");
+	printf("\t2 - Implementer un arbre binaire de recherche\n");
+	printf("\t0 - Quitter le programme\n");
+
+	choix = choixInt(2);
+	printf("choix : %d\n", choix);
+	switch(choix)
+	{
+		case 0:
+			printf("Au revoir !\n");
+			return 1;
+			break;
+		case 1:
+			comparaisonFichier(saisieNomFichier());
+			break;
+		case 2:
+			saisieArbre();
+			break;
+	}
 	return 1;
 }
